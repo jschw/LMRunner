@@ -1,5 +1,8 @@
 import argparse
 import appdirs
+import os
+import subprocess
+import sys
 from pathlib import Path
 from llmrunner.llm_runner_core import LlmRunner
 
@@ -9,6 +12,7 @@ def init():
 def print_help():
     print("""Available commands:
         /getconfigpaths       Output the paths of LLM config files
+        /editconfig           Open llm_config.json in the default text editor
         /updatemodels         Update the LLM model catalog from GitHub
         /listendpoints        List all available LLM endpoint configs
         /startendpoint        Start a specific LLM endpoint
@@ -20,6 +24,18 @@ def print_help():
         /help                 Show this help message
         /exit                 Exit the CLI
         """)
+
+def open_in_default_editor(file_path: Path):
+    try:
+        if sys.platform.startswith("darwin"):
+            subprocess.Popen(["open", "-t", str(file_path)])
+        elif os.name == "nt":
+            os.startfile(file_path)  # type: ignore[attr-defined]
+        else:
+            subprocess.Popen(["xdg-open", str(file_path)])
+        print(f"Opened {file_path} in the default text editor.")
+    except Exception as exc:
+        print(f"Failed to open {file_path}: {exc}")
 
 def _render_table(headers, rows, title=None):
     columns = len(headers)
@@ -102,6 +118,9 @@ def main_app():
         if command == "/getconfigpaths":
             print(f"  -> LLM server config path: {llm_server_config_path}")
             print(f"  -> LLM config path: {llm_config_path}")
+
+        elif command == "/editconfig":
+            open_in_default_editor(llm_config_path)
 
         elif command == "/updatemodels":
             update_models_ok = llm_server.update_model_catalog()
