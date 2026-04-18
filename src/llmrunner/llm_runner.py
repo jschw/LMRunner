@@ -1,7 +1,7 @@
 import argparse
 import appdirs
 from pathlib import Path
-from llm_runner_core import LlmRunner
+from llmrunner.llm_runner_core import LlmRunner
 
 def init():
     pass
