@@ -21,22 +21,41 @@ def print_help():
         /exit                 Exit the CLI
         """)
 
+def _render_table(headers, rows, title=None):
+    columns = len(headers)
+    widths = [len(h) for h in headers]
+    for row in rows:
+        for i in range(columns):
+            cell = str(row[i]) if i < len(row) else ""
+            widths[i] = max(widths[i], len(cell))
+
+    def format_row(values):
+        padded = [str(values[i]).ljust(widths[i]) for i in range(columns)]
+        return "| " + " | ".join(padded) + " |"
+
+    separator = "| " + " | ".join("-" * w for w in widths) + " |"
+    lines = []
+    if title:
+        lines.append(title)
+    lines.append(format_row(headers))
+    lines.append(separator)
+    for row in rows:
+        row_values = [row[i] if i < len(row) else "" for i in range(columns)]
+        lines.append(format_row(row_values))
+    return "\n".join(lines)
+
 def format_model_list(avail_models):
-    header = (
-        "Available LLM models:\n"
-        "| Model name | Port | Path | HF Repo | HF Repo File |\n"
-        "|------------|------|------|---------|--------------|\n"
-    )
+    headers = ["Model name", "Port", "Path", "HF Repo", "HF Repo File"]
     rows = []
     for model in avail_models:
-        name = model.get("name", "")
-        port = model.get("port", "")
-        path = model.get("model", "")
-        hf_repo = model.get("hf-repo", "")
-        hf_file = model.get("hf-file", "")
-        row = f"| {name} | {port} | {path} | {hf_repo} | {hf_file} |"
-        rows.append(row)
-    return header + "\n".join(rows)
+        rows.append([
+            model.get("name", ""),
+            model.get("port", ""),
+            model.get("model", ""),
+            model.get("hf-repo", ""),
+            model.get("hf-file", ""),
+        ])
+    return _render_table(headers, rows, title="Available LLM models:")
 
 def main_app():
     CONFIG_DIR = Path(appdirs.user_config_dir(appname='llmrunner'))
@@ -124,15 +143,9 @@ def main_app():
         elif command == "/llmstatus":
             endpoint_processes = llm_server.list_processes()
             if len(endpoint_processes) > 0:
-                header = (
-                    "| Inference Endpoints |\n"
-                    "|--------------|\n"
-                )
-                rows = []
-                for endpoint in endpoint_processes:
-                    row = f"| {endpoint} |"
-                    rows.append(row)
-                print(header + "\n".join(rows))
+                headers = ["Inference Endpoints"]
+                rows = [[endpoint] for endpoint in endpoint_processes]
+                print(_render_table(headers, rows))
             else:
                 print("There are currently no running LLM inference endpoints.")
 

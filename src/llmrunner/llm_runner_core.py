@@ -183,7 +183,7 @@ class LlmRunner:
 
         for config in self.llm_config:
             name = config.get("name", "Unnamed LLM")
-            print(f"  - {name}")
+            print(f"  {name}")
 
     def get_endpoints(self):
         return self.llm_config
@@ -445,13 +445,14 @@ class LlmRunner:
         if len(self.processes.items()) > 0:
             for name, process in self.processes.items():
                 status = "running" if process.poll() is None else "stopped"
-                processes.append(f"- Process '{name}': PID {process.pid}, Status: {status}")
-            print(processes)
+                processes.append(f"Process '{name}': PID {process.pid}, Status: {status}")
+            for proc in processes:
+                print(proc)
             return processes
 
         else:
-            processes.append("- no processes currently running -")
-            print(processes)
+            processes.append("No processes currently running.")
+            print(processes[0])
             return processes
 
     def update_process_list_file(self):
