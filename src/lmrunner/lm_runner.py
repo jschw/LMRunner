@@ -12,7 +12,9 @@ def init():
 def print_help():
     print("""Available commands:
         /getconfigpaths       Output the paths of LLM config files
-        /editconfig           Open llm_config.json in the default text editor
+        /editlmconf           Open llm_config.json in the default text editor
+        /editserverconf       Open llm_server_config.json in the default text editor
+        /refreshconf          Read in llm_config.json and llm_server_config.json
         /updatemodels         Update the LLM model catalog from GitHub
         /listendpoints        List all available LLM endpoint configs
         /startendpoint        Start a specific LLM endpoint
@@ -126,8 +128,14 @@ def main_app():
             print(f"  -> LLM server config path: {llm_server_config_path}")
             print(f"  -> LLM config path: {llm_config_path}")
 
-        elif command == "/editconfig":
+        elif command == "/editlmconf":
             open_in_default_editor(llm_config_path)
+
+        elif command == "/editserverconf":
+            open_in_default_editor(llm_server_config_path)
+
+        elif command == "/refreshconf":
+            llm_server.refresh_config()
 
         elif command == "/updatemodels":
             update_models_ok = llm_server.update_model_catalog()
