@@ -17,6 +17,11 @@ dependencies = [
   "requests>=2.0",
 ]
 
+[project.optional-dependencies]
+llamacppbindings = [
+  "llama-cpp-python[server]",
+]
+
 [project.scripts]
 lmrunner = "lmrunner.lm_runner:main"
 
