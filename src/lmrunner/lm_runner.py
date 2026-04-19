@@ -4,7 +4,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from llmrunner.llm_runner_core import LlmRunner
+from lmrunner.lm_runner_core import LMRunner
 
 def init():
     pass
@@ -30,7 +30,7 @@ def open_in_default_editor(file_path: Path):
         if sys.platform.startswith("darwin"):
             subprocess.Popen(["open", "-t", str(file_path)])
         elif os.name == "nt":
-            os.startfile(file_path)  # type: ignore[attr-defined]
+            os.startfile(file_path)
         else:
             subprocess.Popen(["xdg-open", str(file_path)])
         print(f"Opened {file_path} in the default text editor.")
@@ -88,17 +88,24 @@ def main_app():
         print("--> Termux special paths enabled.")
 
     # Start LLM server
-    llm_server             = LlmRunner(termux_paths=args.termux)
+    llm_server             = LMRunner(termux_paths=args.termux)
     llm_config_path        = llm_server.get_llm_config_path()
     llm_server_config_path = llm_server.get_llm_server_config_path()
 
+    splash_text = r'''
+    __    __  _______                             
+   / /   /  |/  / __ \__  ______  ____  ___  _____
+  / /   / /|_/ / /_/ / / / / __ \/ __ \/ _ \/ ___/
+ / /___/ /  / / _, _/ /_/ / / / / / / /  __/ /    
+/_____/_/  /_/_/ |_|\__,_/_/ /_/_/ /_/\___/_/     
+                                                  '''
 
-    print("----> LLM Runner CLI <----\n\n")
+    print(splash_text)
     print_help()
 
     while True:
         try:
-            user_input = input("llmrunner > ").strip()
+            user_input = input("lmrunner > ").strip()
         except (EOFError, KeyboardInterrupt):
             print("\nExiting.")
             llm_server.stop_all_processes()

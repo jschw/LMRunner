@@ -8,11 +8,11 @@ import sys
 from pathlib import Path
 
 
-class LlmRunner:
+class LMRunner:
     def __init__(self, termux_paths=False):
         self.termux = termux_paths
 
-        CONFIG_DIR = Path(appdirs.user_config_dir(appname='llmrunner'))
+        CONFIG_DIR = Path(appdirs.user_config_dir(appname='lmrunner'))
         CONFIG_DIR.mkdir(parents=True, exist_ok=True)
 
         self.llm_config_path        = CONFIG_DIR / 'llm_config.json'
@@ -24,9 +24,9 @@ class LlmRunner:
         self.autostart_endpoint     = ""
 
         if self.termux:
-            self.model_base_dir     = Path(os.path.expanduser("~/storage/shared/llmrunner/Models"))
+            self.model_base_dir     = Path(os.path.expanduser("~/storage/shared/lmrunner/Models"))
         else:
-            self.model_base_dir     = Path(os.path.expanduser("~/llmrunner/Models"))
+            self.model_base_dir     = Path(os.path.expanduser("~/lmrunner/Models"))
 
         self.model_base_dir.mkdir(parents=True, exist_ok=True)
         os.environ["LLAMA_CACHE"] = str(self.model_base_dir)
@@ -97,7 +97,7 @@ class LlmRunner:
                 # Create llm config file if not existing
                 # Template content of the llm_server_config.json
                 tmp_llm_server_config = {
-                    "llama-server-path": "~/llmrunner/Llamacpp/llama.cpp/build/bin/llama-server",
+                    "llama-server-path": "~/lmrunner/Llamacpp/llama.cpp/build/bin/llama-server",
                     "use-llama-server-python": "True",
                     "autostart-endpoint": ""
                     }

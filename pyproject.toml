@@ -3,11 +3,11 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-runner"
+name = "lmrunner"
 version = "0.1.0"
 description = "CLI to manage local LLM inference endpoints"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
   {name = "Julian Schweigert"}
@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.scripts]
-llmrunner = "llmrunner.llm_runner:main"
+lmrunner = "lmrunner.lm_runner:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
