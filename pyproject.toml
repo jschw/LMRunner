@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lmrunner"
-version = "0.1.0"
-description = "CLI to manage local LLM inference endpoints"
+version = "0.1.1"
+description = "CLI to manage local language model inference endpoints"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}

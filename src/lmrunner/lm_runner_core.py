@@ -155,9 +155,9 @@ class LMRunner:
         self.load_config()
 
     def update_model_catalog(self)->bool:
-        print("--> Fetching model catalog from github.com/jschw/LLM-Runner...")
+        print("--> Fetching model catalog from github.com/jschw/LMRunner...")
 
-        url = "https://raw.githubusercontent.com/jschw/LLM-Runner/main/resources/model_catalog.json"
+        url = "https://raw.githubusercontent.com/jschw/LMRunner/main/resources/model_catalog.json"
 
         try:
             response = requests.get(url)
