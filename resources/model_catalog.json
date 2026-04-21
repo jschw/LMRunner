@@ -54,6 +54,24 @@
         "api-key": ""
     },
     {
+        "name": "Devstral_small",
+        "ip": "",
+        "port": "4000",
+        "model": "",
+        "hf-repo": "mistralai/Devstral-Small-2505_gguf",
+        "hf-file": "devstralQ4_K_M.gguf",
+        "ctx-size": "",
+        "flash-attn": "",
+        "no-kv-offload": "",
+        "no-mmap": "",
+        "cache-type-k": "",
+        "cache-type-v": "",
+        "n-gpu-layers": "",
+        "lora": "",
+        "no-context-shift": "",
+        "api-key": ""
+    },
+    {
         "name": "Gemma3_1b",
         "ip": "",
         "port": "4000",
