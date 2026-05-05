@@ -74,6 +74,7 @@ class LMRunner:
                             "cache-type-k": "",
                             "cache-type-v": "",
                             "n-gpu-layers": "",
+                            "reasoning": "",
                             "lora": "",
                             "no-context-shift": "",
                             "api-key": ""
@@ -256,6 +257,7 @@ class LMRunner:
                 "cache-type-k": "",
                 "cache-type-v": "",
                 "n-gpu-layers": "",
+                "reasoning": "",
                 "lora": "",
                 "no-context-shift": "",
                 "api-key": ""

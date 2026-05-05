@@ -13,6 +13,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -31,6 +32,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -49,6 +51,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -67,6 +70,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -85,6 +89,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -103,6 +108,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -121,6 +127,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -139,6 +146,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -157,6 +165,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -175,6 +184,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -193,6 +203,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
@@ -211,6 +222,7 @@
         "cache-type-k": "",
         "cache-type-v": "",
         "n-gpu-layers": "",
+        "reasoning": "",
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
