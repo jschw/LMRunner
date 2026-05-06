@@ -378,18 +378,25 @@ class LMRunner:
         if name in self.processes:
             print(f"--> Process with name '{name}' already exists.")
             return
+        
+        kwargs = {}
+
+        if os.name == "posix":
+            kwargs["preexec_fn"] = os.setsid
+        elif os.name == "nt":
+            kwargs["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP
 
         # Start the process in a new process group so we can kill all children
         if self.use_python_server_lib:
             # Use python bindings instead of binaries
-            process = subprocess.Popen([sys.executable, "-m", "llama_cpp.server", *args], preexec_fn=os.setsid)
+            process = subprocess.Popen([sys.executable, "-m", "llama_cpp.server", *args], **kwargs)
 
         else:
             # Check app file if python lib is not activated
             if not os.path.exists(self.target_server_app ):
                 print("--> Error: llama-server executable file not found.")
                 return
-            process = subprocess.Popen([executable_path, *args], preexec_fn=os.setsid)
+            process = subprocess.Popen([executable_path, *args], **kwargs)
             print(args)
 
         self.processes[name] = process
@@ -406,17 +413,26 @@ class LMRunner:
         if process.poll() is None:
             try:
                 # Kill the entire process group
-                os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+                if os.name == "posix":
+                    os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+                elif os.name == "nt":
+                    process.send_signal(signal.CTRL_BREAK_EVENT)
+
                 process.wait(timeout=5)
+
                 del self.processes[name]
                 self.update_process_list_file()
                 print(f"--> Process '{name}' with PID {process.pid} has been stopped.")
                 return [True, f"Process '{name}' with PID {process.pid} has been stopped."]
+
             except Exception as e:
                 del self.processes[name]
                 self.update_process_list_file()
                 print(f"--> Failed to kill process group for '{name}': {e}")
                 return [False, f"Failed to kill process group for '{name}': {e}"]
+            except subprocess.TimeoutExpired:
+                process.kill()
+
         else:
             del self.processes[name]
             self.update_process_list_file()
