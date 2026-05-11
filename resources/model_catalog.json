@@ -226,5 +226,24 @@
         "lora": "",
         "no-context-shift": "",
         "api-key": ""
+    },
+    {
+        "name": "GPT_OSS",
+        "ip": "",
+        "port": "4000",
+        "model": "",
+        "hf-repo": "unsloth/gpt-oss-20b-GGUF",
+        "hf-file": "gpt-oss-20b-Q4_K_M.gguf",
+        "ctx-size": "",
+        "flash-attn": "",
+        "no-kv-offload": "",
+        "no-mmap": "",
+        "cache-type-k": "",
+        "cache-type-v": "",
+        "n-gpu-layers": "",
+        "reasoning": "",
+        "lora": "",
+        "no-context-shift": "",
+        "api-key": ""
     }
 ]
